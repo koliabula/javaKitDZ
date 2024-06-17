@@ -14,11 +14,34 @@ package ClientServerGUI;
 // Обратите внимание, что чаще всего история сообщений хранится на сервере
 // и заполнение истории чата лучше делать при соединении с сервером, а не при открытии окна клиента.
 
+
+import ClientServerGUI.client.*;
+import ClientServerGUI.server.*;
+
 public class Main {
     public static void main(String[] args) {
-        Server server = new Server();
-        new Client(server);
-        new Client(server);
+        //создание объектов сервера и создание связи между ними
+        ServerGUI serverWindow = new ServerGUI();
+        ServerController serverController = new ServerController();
+        ServerFile serverFile = new ServerFile();
+        serverController.setServerView(serverWindow);
+        serverController.setServerLog(serverFile);
+        serverWindow.setServerController(serverController);
+
+        //создание объектов клиента1 и создание связи между ними
+        ClientGUI clientGUI1 = new ClientGUI();
+        ClientController clientController1 = new ClientController();
+        clientController1.setClientView(clientGUI1);
+        clientGUI1.setClient(clientController1);
+        clientController1.setServer(serverController);
+
+        //создание объектов клиента2 и создание связи между ними
+        ClientGUI clientGUI2 = new ClientGUI();
+        ClientController clientController2 = new ClientController();
+        clientController2.setClientView(clientGUI2);
+        clientGUI2.setClient(clientController2);
+        clientController2.setServer(serverController);
+
     }
 
 }
