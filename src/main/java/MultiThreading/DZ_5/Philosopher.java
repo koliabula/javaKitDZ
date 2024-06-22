@@ -32,16 +32,12 @@ public class Philosopher extends Thread {
     public void eat(Philosopher philosopher) throws InterruptedException {
         while (eatCount < 3) {
             if (controller.trueForks(leftFork, rightFork)) {
-//                System.out.println(name + " Кушаю");
-                System.out.println(name + " уплетает вермишель, используя вилки: " + leftFork
-                        + " и " + rightFork);
+                System.out.println(name + " кушаю вилками " + leftFork + " и " + rightFork);
 
                 sleep(new Random().nextInt(2000, 5000));
 
                 controller.falseForks(leftFork, rightFork);
-//                System.out.println(name + " Покушал, медитирую");
-                System.out.println(name + " покушал, можно и помыслить. " +
-                        "Не забыв при этом вернуть вилки " + leftFork + " и " + rightFork);
+                System.out.println(name + " покушал вилками " + leftFork + " и " + rightFork);
                 eatCount++;
             }
         }
